@@ -1,0 +1,35 @@
+
+body{ background-color: whitesmoke; font: 1px/30px 'OpenSansRegular', Arial, sans-serif;line-height: 1.3em;  }
+ #contents { width: 100% }
+ #wrapper{ width: 700px; margin: 0 auto; }	
+ label{ width: 280px;display: inline-block;text-align: right; vertical-align:middle;}
+
+
+#form{ -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;font: 13px/20px 'OpenSansLight', Arial, sans-serif;line-height: 1.3em;padding : 30px 40px 40px 30px;background-color:royalblue ;color: whitesmoke; opacity: 0.6;clear:both; float: left; position: absolute; top:30px; }
+button.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
+button#update {  margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
+
+button#send {   text-align: right;font:  13px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:10px 25px;  margin:0 0 0px; color:#333;cursor:pointer;}
+button#screen { float:left; margin-right: 20px; text-align: right;font:  13px/13px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:10px 25px;  margin:0 0 20px; color:#333;cursor:pointer;}
+#form {
+   -moz-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
+   -webkit-box-shadow: inset 0 0 30px 3px rgba(69, 113, 218,0.5);
+   box-shadow: 0 0 30px 3px rgba(69, 113, 218,0.5);
+}
+#Email{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#password{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#domain{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#graph{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+
+#domainduplicate{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;position: absolute; -moz-top: 210px; -webkit-top:220px; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#graphduplicate{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;position: absolute; -moz-top: 390px; -webkit-top:400px;padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+
+#to{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#releasename{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+
+h1{font:  26px/16px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;}
+a#addlink{font:  12px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:black; float: left;text-decoration: none; }
+h3{font:  17px/18px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red;}
+input.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
+.info {font:  10px/10px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:190px; color:yellow;}
+.infograph {font:  10px/10px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:365px; color:yellow;}
