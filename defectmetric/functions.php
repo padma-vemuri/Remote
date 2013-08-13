@@ -252,7 +252,7 @@
 
       $body .= "</table></div>\n";
       
-      $body .= "Count is -->  ".$count;
+      $body .= "Total Count:   ".$count;
       $body .= "<br/><br/><br/><br/>";
     }
 
@@ -305,7 +305,7 @@
       $body .=  "No Data";
     }
     $body .= "</table></div>\n";
-    $body .= "Count is -->".$count;
+    $body .= "Total Count: ".$count;
     $body .= "<br/><br/><br/><br/>";
     return $body;
   }

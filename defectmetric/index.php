@@ -18,7 +18,7 @@
             		  <!--<label> To <input id ="to" type="email" name="cc"optional placeholder="username@cisco.com"></label> <br/><br/>-->
             		  
                       <label>Release  
-            		    <select id ="domain"  name = "releasedisplay" required multiple style ="height:100px">
+            		    <select id ="domain"  name = "releasedisplay" required multiple style ="height:80px">
             		   	<?php
             		   		$conn;
             		   	    include('functions.php');
@@ -34,12 +34,12 @@
             		    </select>
                        </label>&nbsp;&nbsp;&nbsp; 
                         <b class= "info">cltrl+click on the element to deselect </b>
-            		  <select id ="domainduplicate" class= 'domaindup' name = "release[]" required multiple style ="height:100px"></select> 
+            		  <select id ="domainduplicate" class= 'domaindup' name = "release[]" required multiple style ="height:80px"></select> 
             		   <br/> 
                        <label>Ermo Perf and FastTrack<input type="checkbox" id="ErmoPerf" name ="ErmoPerf" value ="Yes"></label><br/><br/>
                        
                         <label>Graph
-                        <select id ="graph"  name = "graphdisplay"  multiple style ="height:100px">
+                        <select id ="graph"  name = "graphdisplay"  multiple style ="height:80px">
                         <?php
                             //$conn;
                             //include('functions.php');
@@ -54,7 +54,7 @@
                         </select>
                       </label>&nbsp;&nbsp;&nbsp;
                       <b class= "infograph">cltrl+click on the element to deselect </b> 
-                      <select id ="graphduplicate" class ="graphdup" name = "graph[]" required multiple style ="height:100px"></select> 
+                      <select id ="graphduplicate" class ="graphdup" name = "graph[]" required multiple style ="height:80px"></select> 
                       <br/>
                         <a  id = "addlink"href="meta.php">Add New Releases </a><br/>
             		  <label><button id="screen" disabled>Screen</button></label>

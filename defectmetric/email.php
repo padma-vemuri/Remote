@@ -34,8 +34,12 @@ foreach ($_POST['graph'] as $row) {
   
   $ebody .= " <p  style =\"font-family:Calibri;font-size:13px;\">Hi All,<br/><br/> Please  check the list  of TD's  
                 assigned to Performance  and Application Team @ <b>".date('g:i A') ."</b> PST hours<br/><br/></p>"; 
-  $ebody .= "<br/><img src = \"Q4FY13.png\"/> <br/><br/>";
-  $ebody .= "<br/><img src = \"Q1FY14.png\"/> <br/><br/>";
+ 
+   foreach($_POST['graph'] as $v){
+      $ebody .= "<br/><img src = \"".$v.".png\"/><br/>";
+    } 
+
+  
    
   foreach($_POST['release'] as $v){ // loop to create all the tables for the selected releases.
     $ebody .= table($v);
@@ -75,8 +79,12 @@ foreach ($_POST['graph'] as $row) {
   //$mail->addCC("brapearc@cisco.com","Brandon");
   $mail->Subject = "Daily Notification Mail ";
   $mail->MsgHTML($ebody);
-  $mail->AddAttachment("Q4FY13.png");  // Attchaments both the chart/Graph and cisco logo
-  $mail->AddAttachment("Q1FY14.png");
+
+  foreach($_POST['graph'] as $v){
+      $mail->AddAttachment("".$v.".png");
+    } 
+    // Attchaments both the chart/Graph and cisco logo
+ // $mail->AddAttachment("Q1FY14.png");
   $mail->AddAttachment('ciscologo.png');
 
  /* if(sendemail($ebody)){
