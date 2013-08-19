@@ -27,7 +27,7 @@
             		   	    ListAll($result);
                             $result1 = $result;
                 			while (($row = oci_fetch_assoc($result1))){
-                				echo "<option selected>". $row['Release']. "</option>";
+                				echo "<option selected>". $row['Release']." ( ".$row['Domain']." )</option>";
                 			}
                            // print_r($result1);
                 		?>
@@ -48,13 +48,13 @@
                             //print_r($result1);
                             while (($row = oci_fetch_assoc($result))){
 
-                                echo "<option selected>". $row['Release']. "</option>";
+                                echo "<option selected>". $row['Release']." ( ".$row['Domain']." )</option>";
                             }
                         ?>
                         </select>
                       </label>&nbsp;&nbsp;&nbsp;
                       <b class= "infograph">cltrl+click on the element to deselect </b> 
-                      <select id ="graphduplicate" class ="graphdup" name = "graph[]" required multiple style ="height:80px"></select> 
+                      <select id ="graphduplicate" class ="graphdup" name = "graph[]" multiple style ="height:80px"></select> 
                       <br/>
                         <a  id = "addlink"href="meta.php">Add New Releases </a><br/>
             		  <label><button id="screen" disabled>Screen</button></label>

@@ -12,6 +12,8 @@
 
 					<h1> Your Mail has been Sent. </h1><br/><br/>
 					<button id="send"> Send Again </button>
+					<?php echo"<button id=\"send\" name ='home' 
+								onclick= 'window.history.go(-1)';>Home</button> "; ?>
 				</form>
 
 			</div>

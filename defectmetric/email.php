@@ -12,8 +12,8 @@
 
   if(isset($_POST['ErmoPerf']) && $_POST['ErmoPerf'] == 'Yes') {
     $y = 'Y';
-    array_push($_POST['release'], 'ERMO Perf');
-    array_push($_POST['release'], 'FastTrack');
+    array_push($_POST['release'], 'ERMO Perf(ERMORQ)');
+    array_push($_POST['release'], 'FastTrack(ERMORQ)');
   }else
     $y ='N';
   //  
@@ -23,8 +23,11 @@
 
   
 foreach ($_POST['graph'] as $row) {
-   $Release = $row;
-   graph($Release);
+    $no_spaces = preg_replace('/\ |\ /','',$row);
+    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+    $split = explode(',',$nobraces);
+    
+    graph($split[0],$split[1]);
         # code...
   }
   //$Release ="Q4FY13"; // Hard coding the release Since only this graph is needed.
@@ -36,13 +39,23 @@ foreach ($_POST['graph'] as $row) {
                 assigned to Performance  and Application Team @ <b>".date('g:i A') ."</b> PST hours<br/><br/></p>"; 
  
    foreach($_POST['graph'] as $v){
-      $ebody .= "<br/><img src = \"".$v.".png\"/><br/>";
+
+    $no_spaces = preg_replace('/\ |\ /','',$v);
+    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+    $split = explode(',',$nobraces);
+
+
+      $ebody .= "<br/><img src = \"".$split[0].".png\"/><br/>";
     } 
 
   
    
   foreach($_POST['release'] as $v){ // loop to create all the tables for the selected releases.
-    $ebody .= table($v);
+    $no_spaces = preg_replace('/\ |\ /','',$v);
+    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+    $split = explode(',',$nobraces);
+    
+    $ebody .= table($split[0],$split[1]);
   } 
   //ebody .=table('Q4FY13');
   //$ebody .=table('FY13-Q3');
@@ -77,11 +90,25 @@ foreach ($_POST['graph'] as $row) {
   //$mail->addCC("smantral@cisco.com","Suresh");
   //$mail->addCC("supadman@cisco.com","Subba");
   //$mail->addCC("brapearc@cisco.com","Brandon");
-  $mail->Subject = "Daily Notification Mail ";
+  $mail->Subject = "Daily Notification Mail for ";
+  
+
+  foreach($_POST['release'] as $v){ // loop to create all the tables for the selected releases.
+    $no_spaces = preg_replace('/\ |\ /','',$v);
+    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+    $split = explode(',',$nobraces);
+    $mail->Subject .= ", ";
+    $mail->Subject .= $split[0]."";
+  } 
+  
+  
   $mail->MsgHTML($ebody);
 
   foreach($_POST['graph'] as $v){
-      $mail->AddAttachment("".$v.".png");
+      $no_spaces = preg_replace('/\ |\ /','',$v);
+      $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+      $split = explode(',',$nobraces);
+      $mail->AddAttachment("".$split[0].".png");
     } 
     // Attchaments both the chart/Graph and cisco logo
  // $mail->AddAttachment("Q1FY14.png");

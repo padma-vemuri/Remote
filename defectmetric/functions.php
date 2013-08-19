@@ -12,7 +12,7 @@
   } 
 
   // This is called inside graph() will return the values from the databae to graph ()
-  function dailygraph($release){
+  function dailygraph($release, $domain){
     //global $data1y;// 
     //global $data2y;
     //global $data3y;
@@ -23,7 +23,7 @@
     global $conn;
     global $result;
     connect($conn);
-    $query ="select  release,domain,trend_date, app#, perf# from gdcp.cisco_11i_ermo_db_trend where release = '".$release."'  and domain ='ERMORQ' and  ROUND (SYSDATE - TREND_DATE ) < 20 order by trend_date";
+    $query ="select  release,domain,trend_date, app#, perf# from gdcp.cisco_11i_ermo_db_trend where release = '".$release."'  and domain ='".$domain."' and  ROUND (SYSDATE - TREND_DATE ) < 20 order by trend_date";
     parseandexecute($query);
     $temp = array();
     $appCount = array();
@@ -82,7 +82,7 @@
   
 
   //This is graph function for that release and creates an image on the server for the release with release name
-  function graph($release){
+  function graph($release,$domain){
     //global $data1y;// 
     //global $data2y;
     //global $data3y;
@@ -90,7 +90,7 @@
     global $perfCount;
     global $DateRecorded;
 
-    dailygraph($release);
+    dailygraph($release,$domain);
 
     // Create the graph. These two calls are always get_required_files()
     $graph = new Graph(800,420,'auto');
@@ -162,7 +162,7 @@
   }
 
   // parameter passed is domain..or relaease.. and.. oince this is called generates both app and Performance and Application table.. and adds that to body..
-  function table($release){
+  function table($release,$domain){
     global $query;
     global $orderby;
     global $conn;
@@ -175,21 +175,22 @@
     
     //$orderby = " order by project, severity  "; // order  by project and severity;
     $orderby = " order by project, severity  "; // order  by project and severity;
- 
+   
   
-    //$domainQA ="  and domain = 'ERMOQA' ";
+    
   
-    $domainRQ ="  and domain = 'ERMORQ' ";
+    $domainRQ ="  and domain = '".$domain."' ";
   
     $app = "' and  a.assigned_to not in(select distinct c.assigned_to from gdcp.cisco_11i_ermo_db c, gdcp.perf_Assignments p  where c.assigned_to = p.assigned_to)"; // condition for getting all application bugs
   
     $perf = "' and a.assigned_to = b.assigned_to"; // condtion for getting all performance bugs
   
-    $ERMOfilteronly =  " and b.assigned_to IN ('bidalal','gmaganti','raykim','sanjpras','sdulla','sukoyyal','vkhemani','kkestur','abhkapoo','rnadupal','lkondu','datow','11iperf-tuning','vinigam','vithirum','maninpan','lpunukol','aguntupa','atipatel','gisachde','vanarya','ragorle','sipentel','rajnarra','mbagayat','mraoputh','sumoolch','rajichan','ramcasti','stippara','vvelchal','ssreepar','srudhara','srguntup','rajalaga','venvemur','vikapodd','ranjaven','dmahto','shivnaya','vsikarwa','dthankha','vakram','sammanav','navchida ','tbhogara','banjanap','steegela','sproddut','asamant','sramared','rashank3')" ;
+    $ERMOfilteronly =  " and b.assigned_to IN ('bidalal','gmaganti','raykim','sanjpras','sdulla','sukoyyal','vkhemani','kkestur','abhkapoo','rnadupal','lkondu','datow','11iperf-tuning','vinigam','vithirum','maninpan','lpunukol','aguntupa','atipatel','gisachde','vanarya','ragorle','sipentel','rajnarra','mbagayat','mraoputh','sumoolch','rajichan','ramcasti','stippara','vvelchal','ssreepar','srudhara','srguntup','rajalaga','venvemur','vikapodd','ranjaven','dmahto','shivnaya','vsikarwa','dthankha','vakram','sammanav','navchida ','tbhogara','pavsistl','banjanap','steegela','sproddut','asamant','sramared','rashank3')" ;
   
     connect($conn); // calls connnect to get the conneciton.
 
-    if($release == "ERMO Perf"){
+    if($release == "ERMOPerf"){
+      $release = 'ERMO Perf';
     //$query_for_app_bugs = ""; // actuall query
     //$query_for_perf_bugs = $query.$release.$perf.$ERMOfilteronly.$domainQA.$orderby; //actual query for ERMO Only throws in a different filet
     $query_for_app_bugs  = $query.$release.$perf.$ERMOfilteronly.$domainRQ.$orderby;
