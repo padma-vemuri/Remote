@@ -36,7 +36,9 @@
                         <b class= "info">cltrl+click on the element to deselect </b>
             		  <select id ="domainduplicate" class= 'domaindup' name = "release[]" required multiple style ="height:80px"></select> 
             		   <br/> 
-                       <label>Ermo Perf and FastTrack<input type="checkbox" id="ErmoPerf" name ="ErmoPerf" value ="Yes"></label><br/><br/>
+                       <label>Ermo Perf and FastTrack<input type="checkbox" id="ErmoPerf" name ="ErmoPerf" value ="Yes"></label><br/>
+                       <label>Summary <input type="checkbox" id='Summary' name ='Summary' value ='Yes'></label>
+                       <br/><br/>
                        
                         <label>Graph
                         <select id ="graph"  name = "graphdisplay"  multiple style ="height:80px">

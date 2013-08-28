@@ -10,13 +10,19 @@
   $username = $_POST['email']; // Getting From Email Id.
   $to = $_POST['to']; // Getting / Addding  'TO' part
 
+  
+
   if(isset($_POST['ErmoPerf']) && $_POST['ErmoPerf'] == 'Yes') {
     $y = 'Y';
     array_push($_POST['release'], 'ERMO Perf(ERMORQ)');
     array_push($_POST['release'], 'FastTrack(ERMORQ)');
+   
   }else
     $y ='N';
   //  
+  if(isset($_POST['Summary']) && $_POST['Summary'] == 'Yes'){
+     array_push($_POST['release'],'Summary(ERMORQ)');
+  }
   
   refresh($y);  // Refreshes the meta table and updates with the current date(Defects)// deletes meta data and updates wiht current data from QC
 

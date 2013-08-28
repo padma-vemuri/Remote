@@ -209,6 +209,20 @@
        $query_for_app_bugs  = $queryForFastrack.$appForFastrack.$onlyFasttrack.$domainRQ.$orderby;
        $query_for_perf_bugs = $queryForFastrack.$perfForFastrack.$onlyFasttrack.$domainRQ.$orderby;
     }
+
+    elseif ($release == 'Summary') {
+      $querySummary = "select   Project as \"Project\",
+                        count(case when severity = 'S1' then 1 else null end) as S1,
+                        count(case when severity = 'S2' then 1 else null end) as S2,
+                        count(case when severity = 'S3' then 1 else null end) as S3,
+                        count(case when severity = 'S4' then 1 else null end) as S4,
+                        count(case when severity = 'S5' then 1 else null end) as S5,
+                        count(case when severity = 'S6' then 1 else null end) as S6, count(1) as \"Total\" 
+                      from gdcp.cisco_11i_ermo_db where release = 'Q1FY14'  and status <> '12 Closed'
+                      group by rollup (project)";
+
+      $query_for_app_bugs = $querySummary;
+    }
     
     else{
       $query_for_app_bugs  = $query.$release.$app.$domainRQ.$orderby; // actuall query for other releases
@@ -230,6 +244,9 @@
     $ncols = oci_num_fields($s); // gives out number of collumns;
     $body = "";
     if($release == 'ERMO Perf'){
+      $body .= "";
+    }
+    elseif ($release == 'Summary') {
       $body .= "";
     }
     else{
@@ -283,10 +300,14 @@
       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Assigned to  Application Team &nbsp; ".$release." : </b>  <br/><br/>";
       $body .= "<u style =\"font-family:Calibri;font-size:14px;color:red\">Note : The status needs to be changed for the cases highlighted in yellow</u><br/><br/>";
     }
+    elseif ($release == 'Summary') {
+       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Summary of Q1FY14 </b>  <br/><br/>";
+
+    }
     else{
       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Assigned to  Application Team &nbsp; ".$release." : </b>  <br/><br/>";
     }
-    $body .=  "<table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;padding-left: 6px; font-size:12px;\">"; // Table for Performance
+    $body .=  "<table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;padding-left: 6px;padding-right:6px; font-size:12px;\">"; // Table for Performance
     $body .= "<tr>";
     for ($i = 1; $i <= $ncols1; ++$i) {
       $colname = oci_field_name($s1, $i);
