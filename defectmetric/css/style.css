@@ -32,7 +32,7 @@ a#addlink{font:  12px/11px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 
 h3{font:  17px/18px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0; color:red;}
 input.btn { margin-right: 20px; text-align: left;font:  14px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; margin-right:2px;  border:solid 1px #ccc; padding:5px 10px;  margin:0 0 20px; text-transform:uppercase;color:#333;cursor:pointer;}
 .info {font:  10px/10px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:130px; color:yellow;}
-.infograph {font:  10px/10px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:265px; color:yellow;}
+.infograph {font:  10px/10px 'OpenSansRegular', Arial, sans-serif;letter-spacing: 0;position:absolute; top:285px; color:yellow;}
 
 /* CSS for index.html */
 
