@@ -20,9 +20,7 @@
   }else
     $y ='N';
   //  
-  if(isset($_POST['Summary']) && $_POST['Summary'] == 'Yes'){
-     array_push($_POST['release'],'Summary(ERMORQ)');
-  }
+
   
   refresh($y);  // Refreshes the meta table and updates with the current date(Defects)// deletes meta data and updates wiht current data from QC
 
@@ -63,17 +61,22 @@ foreach ($_POST['graph'] as $row) {
     
     $ebody .= table($split[0],$split[1]);
   } 
-  //ebody .=table('Q4FY13');
-  //$ebody .=table('FY13-Q3');
-  //$ebody .=table('May-13-Rel');
-  //$ebody .=table('June-13-Rel');
-  //$ebody .=table('ERMO Perf');
-  
+
+  if(isset($_POST['summary'])){
+    
+      $no_spaces = preg_replace('/\ |\ /','',$_POST['summary']);
+      //$ebody .= $no_spaces.'this is no spaces';
+      $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+      //$ebody .= $nobraces.'this is no braces';
+      $split = explode(',',$nobraces);      
+      $ebody .= releaseSummaryTable($split[0],$split[1]);
+  }
+
 
 
   $ebody .= "<img src = \"ciscologo.png\"><br/>";
   $ebody .= "Thanks and Regards, <br/>";
-  $ebody .= "ATS Performance Management";
+  $ebody .= "EDPS Performance Management";
   
 
   // MAil Fucntion Starts here-- We use PHPMailer to send mail out.
@@ -88,7 +91,7 @@ foreach ($_POST['graph'] as $row) {
   $mail->SMTPAuth = true;
   $mail->SingleTo = false; // if you want to send mail to the users individually so that no recipients can see that who has got the same email.
   $mail->From = $username;
-  $mail->FromName = "ATS Performance Management";
+  $mail->FromName = "EDPS Performance Management";
   $mail->addAddress($username);
  
   //$mail->addCC("kikulkar@cisco.com","kiran");

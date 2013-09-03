@@ -16,14 +16,25 @@
 
 					  <label>To <input id ="Email" type="text" name="email"  required placeholder="From@cisco.com"></label><br/>
             		  <!--<label> To <input id ="to" type="email" name="cc"optional placeholder="username@cisco.com"></label> <br/><br/>-->
-            		  
+            		  <label>Summary
+                        <select id ="summary"  name = "summary" style ="">
+                        <?php
+                             include('functions.php');
+                              error_reporting(0);
+                            
+                            ListAll($result);
+                            while (($row = oci_fetch_assoc($result))){
+                                echo "<option>". $row['Release']." ( ".$row['Domain']." )</option>";
+                            }
+                        ?>
+                        </select>
+                      
+                      <label>Ermo Perf and FastTrack<input type="checkbox" id="ErmoPerf" name ="ErmoPerf" value ="Yes"></label></label><br/> <br/>
                       <label>Release  
             		    <select id ="domain"  name = "releasedisplay" required multiple style ="height:80px">
             		   	<?php
             		   		$conn;
-            		   	    include('functions.php');
-                            error_reporting(0);
-                            
+            		   	   
             		   	    ListAll($result);
                             $result1 = $result;
                 			while (($row = oci_fetch_assoc($result1))){
@@ -35,19 +46,11 @@
                        </label>&nbsp;&nbsp;&nbsp; 
                         <b class= "info">cltrl+click on the element to deselect </b>
             		  <select id ="domainduplicate" class= 'domaindup' name = "release[]" required multiple style ="height:80px"></select> 
-            		   <br/> 
-                       <label>Ermo Perf and FastTrack<input type="checkbox" id="ErmoPerf" name ="ErmoPerf" value ="Yes"></label><br/>
-                       <label>Summary <input type="checkbox" id='Summary' name ='Summary' value ='Yes'></label>
-                       <br/><br/>
-                       
+            		   <br/>  
                         <label>Graph
                         <select id ="graph"  name = "graphdisplay"  multiple style ="height:80px">
                         <?php
-                            //$conn;
-                            //include('functions.php');
-                            //error_reporting(0);
                             ListAll($result);
-                            //print_r($result1);
                             while (($row = oci_fetch_assoc($result))){
 
                                 echo "<option selected>". $row['Release']." ( ".$row['Domain']." )</option>";

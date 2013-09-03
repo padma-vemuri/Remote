@@ -19,6 +19,8 @@ button#screen { float:left; margin-right: 20px; text-align: right;font:  13px/13
 #Email{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #password{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  15px/18px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 #domain{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+#summary{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
+
 #graph{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}
 
 #domainduplicate{ -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;font:  12px/12px 'OpenSansLight', Arial, sans-serif;letter-spacing: 0;position: absolute; -moz-top: 210px; -webkit-top:220px; padding:5px;  color:black; border:solid 1px #ccc; margin:0 0 20px; width:220px;}

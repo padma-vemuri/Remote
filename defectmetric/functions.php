@@ -161,6 +161,66 @@
       return false;
   }
 
+
+  function releaseSummaryTable($release,$domain){
+
+    global $query;
+    global $orderby;
+    global $conn;
+
+     // connect($conn);
+
+      $querySummary = "select   Project as \"Project\",
+                        count(case when severity = 'S1' then 1 else null end) as S1,
+                        count(case when severity = 'S2' then 1 else null end) as S2,
+                        count(case when severity = 'S3' then 1 else null end) as S3,
+                        count(case when severity = 'S4' then 1 else null end) as S4,
+                        count(case when severity = 'S5' then 1 else null end) as S5,
+                        count(case when severity = 'S6' then 1 else null end) as S6, count(1) as \"Total\" 
+                      from gdcp.cisco_11i_ermo_db where release = '".$release."' and domain = '".$domain."' and status <> '12 Closed'
+                      group by rollup (project)";
+    
+
+    $s = oci_parse($conn,"$querySummary"); // perf This is first table;
+    if (!$s) {
+      $e = oci_error($conn);
+      deleteFile($release);
+      trigger_error('Could not parse statement: '. $e['message'], E_USER_ERROR);
+    }
+    $r = oci_execute($s);
+    if (!$r) {
+      $e = oci_error($s);
+      deleteFile($release);
+      trigger_error('Could not execute statement: '. $e['message'], E_USER_ERROR);
+    }
+
+    $ncols = oci_num_fields($s); // gives out number of collumns;
+      $body .= "<br/><br/>";
+      $body .= "<b  style = \"font-family:Calibri;font-size:16px;\">Summary of   &nbsp;".$release."&nbsp Release </b>  <br/><br/>
+                <table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;width:70%;padding-left:6px; font-size:12px;\">"; //Table for Application.
+      $body .= "<tr>";
+
+      for ($i = 1; $i <= $ncols; ++$i) {
+        $colname = oci_field_name($s, $i);
+        $body .= " <th style=\"background-color:lightblue;font-family:Calibri;font-size:12px;\">".htmlentities($colname, ENT_QUOTES)."</b></th>\n";
+      }
+      $body .= "</tr>\n";
+      $count = 0;
+      while (($row = oci_fetch_array($s, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {  
+        foreach ($row as $item) {
+          $item = str_replace('?', '-', $item);
+          $body .= " <td>".($item!==null?htmlentities($item,ENT_QUOTES):"&nbsp;")."</td>\n";
+        }
+        $body .= "</tr>\n"; $count++;
+      }
+
+      $body .= "</table></div>\n";
+      $count = $count - 1;
+      $body .= "Total Count:   ".$count;
+      $body .= "<br/><br/><br/><br/>";
+      return $body;
+  }
+
   // parameter passed is domain..or relaease.. and.. oince this is called generates both app and Performance and Application table.. and adds that to body..
   function table($release,$domain){
     global $query;
@@ -209,25 +269,11 @@
        $query_for_app_bugs  = $queryForFastrack.$appForFastrack.$onlyFasttrack.$domainRQ.$orderby;
        $query_for_perf_bugs = $queryForFastrack.$perfForFastrack.$onlyFasttrack.$domainRQ.$orderby;
     }
-
-    elseif ($release == 'Summary') {
-      $querySummary = "select   Project as \"Project\",
-                        count(case when severity = 'S1' then 1 else null end) as S1,
-                        count(case when severity = 'S2' then 1 else null end) as S2,
-                        count(case when severity = 'S3' then 1 else null end) as S3,
-                        count(case when severity = 'S4' then 1 else null end) as S4,
-                        count(case when severity = 'S5' then 1 else null end) as S5,
-                        count(case when severity = 'S6' then 1 else null end) as S6, count(1) as \"Total\" 
-                      from gdcp.cisco_11i_ermo_db where release = 'Q1FY14'  and status <> '12 Closed'
-                      group by rollup (project)";
-
-      $query_for_app_bugs = $querySummary;
-    }
-    
     else{
       $query_for_app_bugs  = $query.$release.$app.$domainRQ.$orderby; // actuall query for other releases
       $query_for_perf_bugs = $query.$release.$perf.$domainRQ.$orderby; //actual query
     }
+    
     $s = oci_parse($conn,"$query_for_perf_bugs"); // perf This is first table;
     if (!$s) {
       $e = oci_error($conn);
@@ -246,14 +292,13 @@
     if($release == 'ERMO Perf'){
       $body .= "";
     }
-    elseif ($release == 'Summary') {
-      $body .= "";
-    }
+    
     else{
 
       $body .= "<b  style = \"font-family:Calibri;font-size:16px;\">Assigned to Performance  Team  &nbsp;".$release." : </b>  <br/><br/>
                 <table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;width:100%;padding-left:6px; font-size:12px;\">"; //Table for Application.
       $body .= "<tr>";
+      
       for ($i = 1; $i <= $ncols; ++$i) {
         $colname = oci_field_name($s, $i);
         $body .= " <th style=\"background-color:lightblue;font-family:Calibri;font-size:12px;\">".htmlentities($colname, ENT_QUOTES)."</b></th>\n";
@@ -300,15 +345,20 @@
       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Assigned to  Application Team &nbsp; ".$release." : </b>  <br/><br/>";
       $body .= "<u style =\"font-family:Calibri;font-size:14px;color:red\">Note : The status needs to be changed for the cases highlighted in yellow</u><br/><br/>";
     }
-    elseif ($release == 'Summary') {
-       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Summary of Q1FY14 </b>  <br/><br/>";
-
-    }
+    
     else{
       $body .= "<b style = \"font-family:Calibri;font-size:16px;\"> Assigned to  Application Team &nbsp; ".$release." : </b>  <br/><br/>";
     }
+    
+
     $body .=  "<table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;padding-left: 6px;padding-right:6px; font-size:12px;\">"; // Table for Performance
+    
+
     $body .= "<tr>";
+    
+
+
+
     for ($i = 1; $i <= $ncols1; ++$i) {
       $colname = oci_field_name($s1, $i);
       $body .= " <th style=\"background-color:lightblue;font-family:Calibri;font-size:12px;\">".htmlentities($colname, ENT_QUOTES)."</b></th>\n";
