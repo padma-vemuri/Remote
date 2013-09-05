@@ -1,5 +1,6 @@
 <html>
 	<head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
         <script src="http://yui.yahooapis.com/3.11.0/build/yui/yui-min.js"></script> <!-- link to YUI library -->
 		<!----  JS/ CSS all scripts go here.. -->		
 		<link rel="stylesheet" href="css/style.css"> <!-- link to style sheet -->

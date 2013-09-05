@@ -8,7 +8,7 @@
     <body style ="font: 17px/22px 'OpenSansRegular';">
         <br/><br/>
         <h1> Add  a New Release</h1><br/><br/>
-        <input type="button" class="btn" onclick="javascript:location.href = '/dev/email/meta.php'" value ="Back"/>
+        <input type="button" class="btn" onclick="javascript:location.href = '/defectmetric/meta.php'" value ="Back"/>
         <form action ="changes.php" method="post">
 			<label>
 			Release <input id ="releasename" type="text" name="releasename"  required placeholder="RELEASE NAME"></label><br/>

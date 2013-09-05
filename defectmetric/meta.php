@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<h1> List of all Releases </h1><br/><br/>
-		 &nbsp;<button type="button" class="btn" onclick ="javascript:location.href = '/dev/email'" value="Home"> Home</button><button id ="add"  class ="btn" onclick ="location.href='add.php'"> Add </button>
+		 &nbsp;<button type="button" class="btn" onclick ="javascript:location.href = '/defectmetric'" value="Home"> Home</button><button id ="add"  class ="btn" onclick ="location.href='add.php'"> Add </button>
 		<?php
 			$conn;
 			global $result;
