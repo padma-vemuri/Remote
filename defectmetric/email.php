@@ -52,17 +52,7 @@ foreach ($_POST['graph'] as $row) {
       $ebody .= "<br/><img src = \"".$split[0].".png\"/><br/>";
     } 
 
-  
-   
-  foreach($_POST['release'] as $v){ // loop to create all the tables for the selected releases.
-    $no_spaces = preg_replace('/\ |\ /','',$v);
-    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
-    $split = explode(',',$nobraces);
-    
-    $ebody .= table($split[0],$split[1]);
-  } 
-
-  if(isset($_POST['summary'])){
+    if(isset($_POST['summary'])){
     
       $no_spaces = preg_replace('/\ |\ /','',$_POST['summary']);
       //$ebody .= $no_spaces.'this is no spaces';
@@ -72,6 +62,16 @@ foreach ($_POST['graph'] as $row) {
       $ebody .= releaseSummaryTable($split[0],$split[1]);
   }
 
+   
+  foreach($_POST['release'] as $v){ // loop to create all the tables for the selected releases.
+    $no_spaces = preg_replace('/\ |\ /','',$v);
+    $nobraces =  preg_replace('/\(|\)/',',',$no_spaces);
+    $split = explode(',',$nobraces);
+    
+    $ebody .= table($split[0],$split[1]);
+  } 
+
+  
 
 
   $ebody .= "<img src = \"ciscologo.png\"><br/>";

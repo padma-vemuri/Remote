@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html>
 	<head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
         <script src="http://yui.yahooapis.com/3.11.0/build/yui/yui-min.js"></script> <!-- link to YUI library -->
-		<!----  JS/ CSS all scripts go here.. -->		
+		
+        <!-- // JS/ CSS all scripts go here.. -->		
 		<link rel="stylesheet" href="css/style.css"> <!-- link to style sheet -->
 		<script src='js/script.js'></script>  <!-- link to JS functions -->
 		<link rel="stylesheet" href="font/stylesheet.css"> <!--  link to font style sheets -->
@@ -16,7 +18,6 @@
 				<form id ="form" action ="email.php" onsubmit="return sendform()" method="post"><h1> Daily Notification Mail </h1> <br/>
 
 					  <label>To <input id ="Email" type="text" name="email"  required placeholder="From@cisco.com"></label><br/>
-            		  <!--<label> To <input id ="to" type="email" name="cc"optional placeholder="username@cisco.com"></label> <br/><br/>-->
             		  <label>Summary
                         <select id ="summary"  name = "summary" style ="">
                         <?php
@@ -34,12 +35,11 @@
                       <label>Release  
             		    <select id ="domain"  name = "releasedisplay" required multiple style ="height:80px">
             		   	<?php
-            		   		$conn;
-            		   	   
+            		   		$conn;   		   	   
             		   	    ListAll($result);
                             $result1 = $result;
                 			while (($row = oci_fetch_assoc($result1))){
-                				echo "<option selected>". $row['Release']." ( ".$row['Domain']." )</option>";
+                				echo "<option selected>". $row['Release']." ( ".$row['Domain']." ) </option>";
                 			}
                            // print_r($result1);
                 		?>

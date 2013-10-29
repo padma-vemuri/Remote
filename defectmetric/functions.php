@@ -197,7 +197,7 @@
     $ncols = oci_num_fields($s); // gives out number of collumns;
       $body .= "<br/><br/>";
       $body .= "<b  style = \"font-family:Calibri;font-size:16px;\">Summary of   &nbsp;".$release."&nbsp Release </b>  <br/><br/>
-                <table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;width:70%;padding-left:6px; font-size:12px;\">"; //Table for Application.
+                <table border = '1'  style = \"border-collapse:collapse;font-family:Calibri;width:40%;padding-left:6px; font-size:12px;\">"; //Table for Application.
       $body .= "<tr>";
 
       for ($i = 1; $i <= $ncols; ++$i) {

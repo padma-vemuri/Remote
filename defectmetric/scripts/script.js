@@ -1,6 +1,7 @@
 <script type="text/javascript">
 YUI().use('node', 'event-touch', function(Y) {
     var onClick = function(e) {
+        
         e.preventDefault();
         var item = e.currentTarget,
             list2 = Y.one('#domainduplicate');
@@ -11,6 +12,7 @@ YUI().use('node', 'event-touch', function(Y) {
                 item.remove(); // sugar for item.get('parentNode').removeChild(item);
             }
         } else { // else add a clone of the clicked item to the cart
+            console.log(list2);
             list2.append(item.cloneNode(true));
         }
     };

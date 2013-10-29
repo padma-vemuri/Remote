@@ -1,5 +1,6 @@
 YUI().use('node', 'event-touch', function(Y) {
     var onClick = function(e) {
+        console.log('hwyyy'+e.preventDefault());
         e.preventDefault();
         var item = e.currentTarget,
             list2 = Y.one('#domainduplicate');
